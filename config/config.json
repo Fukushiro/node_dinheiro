@@ -1,0 +1,10 @@
+{
+  "local": {
+    "dialect": "sqlite",
+    "storage": "db.sqlite3"
+  },
+  "development": {
+    "dialect": "sqlite",
+    "storage": "db.sqlite3"
+  }
+}
