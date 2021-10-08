@@ -6,10 +6,7 @@ function verifyJWT(
   res: express.Response,
   next: express.NextFunction
 ) {
-  console.log(process.env.SECRE);
-
   const token = req.headers['token'];
-  console.log(token);
 
   if (!token) {
     return res.status(401).json({ auth: false, message: 'No token provided' });

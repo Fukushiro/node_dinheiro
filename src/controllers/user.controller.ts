@@ -34,7 +34,9 @@ async function findAllUser(
   next: express.NextFunction
 ) {
   try {
-    const users = await UserModel.findAll();
+    const users = (await UserModel.findAll()).map((v: any) => {
+      return { username: v.username };
+    });
 
     res.status(200).json({ message: 'Sucesso', users: users });
   } catch (e) {
@@ -53,9 +55,7 @@ function getToken(
   res: express.Response,
   next: express.NextFunction
 ) {
-  console.log(process.env.SECRET);
-
-  const token = getJwt(10 * 60, process.env.SECRET);
+  const token = getJwt(100 * 60, process.env.SECRET);
   res.status(200).json({ token: token });
 }
 
