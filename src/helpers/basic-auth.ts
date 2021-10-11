@@ -6,6 +6,8 @@ async function basicAuth(
   res: express.Response,
   next: express.NextFunction
 ) {
+  // console.log(req);
+
   const au = auth(req);
   console.log(au);
   if (au == undefined) {

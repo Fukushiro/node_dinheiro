@@ -5,8 +5,9 @@ import {
   getClientByName,
   getClienteById,
 } from '../models/cliente.model';
+import { createCarteira } from '../models/carteira.model';
 
-function criarClienteController(
+async function criarClienteController(
   req: express.Request,
   res: express.Response,
   next: express.NextFunction
@@ -17,8 +18,12 @@ function criarClienteController(
       .json({ message: 'Parametros de body obrigatorios não passados' });
   }
 
-  createCliente(req.body.username, req.body.password);
+  const cliente: any = await createCliente(
+    req.body.username,
+    req.body.password
+  );
 
+  createCarteira(0, cliente.id);
   res.status(200).json({ message: 'Sucesso ao criar cliente' });
 }
 
@@ -55,13 +60,11 @@ async function authenticateCliente(
       .json({ message: 'Credenciais erradas', auth: false });
   }
 
-  return res
-    .status(200)
-    .json({
-      message: 'Sucesso',
-      auth: true,
-      cliente: { id: cliente.id, username: cliente.username },
-    });
+  return res.status(200).json({
+    message: 'Sucesso',
+    auth: true,
+    cliente: { id: cliente.id, username: cliente.username },
+  });
 }
 
 export { criarClienteController, getClienteByPk, authenticateCliente };

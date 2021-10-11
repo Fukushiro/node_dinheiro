@@ -24,7 +24,7 @@ async function createCliente(username: string, password: string) {
   const name = username;
   const pass = await encript(password);
 
-  await ClienteModel.create({ username: name, password: pass });
+  return await ClienteModel.create({ username: name, password: pass });
 }
 
 async function getClienteById(id: number) {

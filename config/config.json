@@ -1,7 +1,7 @@
 {
-  "local": {
+  "production": {
     "dialect": "sqlite",
-    "storage": "db.sqlite3"
+    "storage": "db_prod.sqlite3"
   },
   "development": {
     "dialect": "sqlite",

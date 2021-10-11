@@ -4,26 +4,17 @@ import { sequelize } from './models';
 const queryInterface = sequelize.getQueryInterface();
 
 async function testeUp() {
-  await queryInterface.createTable('Cliente', {
-    id: {
+  await queryInterface.createTable('carteira', {
+    dinheiro: { type: DataTypes.FLOAT, defaultValue: 0, allowNull: false },
+    ClienteId: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-      primaryKey: true,
-      autoIncrement: true,
-    },
-    username: { type: DataTypes.STRING, allowNull: false },
-    password: { type: DataTypes.STRING, allowNull: false },
-    createdAt: {
-      type: DataTypes.DATE,
-      allowNull: false,
-    },
-    updatedAt: {
-      type: DataTypes.DATE,
-      allowNull: false,
+      references: { key: 'id', model: 'Cliente' },
+      onUpdate: 'CASCADE',
+      onDelete: 'SET NULL',
     },
   });
 }
 
 async function testeDown() {
-  await queryInterface.dropTable('Cliente');
+  await queryInterface.dropTable('carteira');
 }
