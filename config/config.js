@@ -1,9 +1,11 @@
-const fs = require('fs');
-
 module.exports = {
   production: {
-    dialect: 'sqlite',
-    storage: 'db_prod.sqlite3',
+    dialect: 'postgres',
+    username: 'postgres',
+    password: 'postgres',
+    host: 'localhost',
+    database: 'dinheiro_production',
+    port: '5432',
   },
   development: {
     dialect: 'sqlite',
