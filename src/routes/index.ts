@@ -3,7 +3,7 @@ import { CarteiraRoutes } from './carteira.routes';
 import { ClienteRoutes } from './cliente.routes';
 import UserRoute from './user.routes';
 const rotas = (app: any) => {
-  UserRoute(app);
+  // UserRoute(app);
   ClienteRoutes(app);
   CarteiraRoutes(app);
 };

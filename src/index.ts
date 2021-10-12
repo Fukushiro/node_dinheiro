@@ -6,6 +6,7 @@ import { config } from 'dotenv';
 import { verifyJWT } from './helpers/jwt-config';
 import { getToken } from './controllers/user.controller';
 import cors from 'cors';
+import UserRoute from './routes/user.routes';
 config();
 const app = express();
 
@@ -19,9 +20,10 @@ app.use(
 app.use(cors({ origin: '*' }));
 // app.options('*', c);
 app.use(express.json({ limit: '50mb' }));
+UserRoute(app);
 app.use(basicAuth);
 app.get('/user/token', getToken);
-// app.use(verifyJWT);
+app.use(verifyJWT);
 app.get('/', (req, res) => res.send('Express + Typescript'));
 routes(app);
 
