@@ -36,4 +36,21 @@ async function addValueCarteira(carteiraId: number, amount: number) {
   }
 }
 
-export { createCarteira, getCarteiraByCliente, addValueCarteira };
+async function removeValueCarteira(carteiraId: number, amount: number) {
+  const carteira: any = await CarteiraModel.findOne({
+    where: { id: carteiraId },
+  });
+  if (carteira != null && carteira.dinheiro - amount >= 0) {
+    await CarteiraModel.update(
+      { dinheiro: carteira.dinheiro - amount },
+      { where: { id: carteiraId } }
+    );
+  }
+}
+
+export {
+  createCarteira,
+  getCarteiraByCliente,
+  addValueCarteira,
+  removeValueCarteira,
+};

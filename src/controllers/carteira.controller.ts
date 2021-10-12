@@ -3,6 +3,7 @@ import {
   addValueCarteira,
   createCarteira,
   getCarteiraByCliente,
+  removeValueCarteira,
 } from '../models/carteira.model';
 
 function criarCarteiraController(
@@ -51,8 +52,24 @@ async function addCarteiraValue(
   res.status(200).json({ message: 'Sucesso' });
 }
 
+async function removeCarteiraValue(
+  req: express.Request,
+  res: express.Response,
+  next: express.NextFunction
+) {
+  if (req.body == undefined || !req.body.amount || !req.body.carteiraId) {
+    return res
+      .status(400)
+      .json({ message: 'Parametros de body obrigatorios não passados' });
+  }
+
+  await removeValueCarteira(req.body.carteiraId, req.body.amount);
+  res.status(200).json({ message: 'Sucesso' });
+}
+
 export {
   criarCarteiraController,
   getCarteiraByClienteController,
   addCarteiraValue,
+  removeCarteiraValue,
 };
