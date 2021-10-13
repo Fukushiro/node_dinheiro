@@ -10,29 +10,32 @@ const method1 = {
   port: 5432,
 };
 
-const methodDev = {
+const methodDev: { dialect: string; storage: string } = {
   dialect: 'sqlite',
   storage: 'db_development.sqlite3',
 };
 
-const methodProd = process.env.DATABASE_URL || '';
-console.log(methodProd, {
-  dialectOptions: {
-    ssl: {
-      require: true,
-      rejectUnauthorized: false,
-    },
-  },
-});
-
-const sequelize = new Sequelize(String(process.env.DATABASE_URL), {
-  dialectOptions: {
-    ssl: {
-      require: true,
-      rejectUnauthorized: false,
-    },
-  },
-});
+const methodProd = '';
+let sequelize: any;
+if (process.env.USAR_SQLITE == 'true') {
+  sequelize = new Sequelize({
+    dialect: 'sqlite',
+    storage: 'db_development.sqlite3',
+  });
+} else {
+  if (process.env.USAR_SSL == 'true') {
+    sequelize = new Sequelize(String(process.env.DATABASE_URL), {
+      dialectOptions: {
+        ssl: {
+          require: true,
+          rejectUnauthorized: false,
+        },
+      },
+    });
+  } else {
+    sequelize = new Sequelize(String(process.env.DATABASE_URL));
+  }
+}
 
 // const db: { Sequelize: any; sequelize: any } = {
 //   Sequelize: Sequelize,
