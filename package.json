@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon build/src/index.js",
+    "start": "nodemon src/index.ts",
     "dev": "nodemon src/index.ts",
     "build": "tsc --project ./",
     "createProd": "npx sequelize-cli db:create --env productionString",
