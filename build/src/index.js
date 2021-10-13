@@ -11,12 +11,14 @@ const jwt_config_1 = require("./helpers/jwt-config");
 const user_controller_1 = require("./controllers/user.controller");
 const cors_1 = __importDefault(require("cors"));
 const user_routes_1 = __importDefault(require("./routes/user.routes"));
+const config_1 = require("../config");
 (0, dotenv_1.config)();
 const app = (0, express_1.default)();
 const PORT = 8000;
 app.use(express_1.default.urlencoded({
     limit: '50mb',
 }));
+console.log('envs', config_1.envs.DATABASE_URL);
 // const c = cors();
 app.use((0, cors_1.default)({ origin: '*' }));
 // app.options('*', c);
@@ -29,5 +31,5 @@ app.get('/', (req, res) => res.send('Express + Typescript'));
 (0, routes_1.default)(app);
 // sequelize.sync({});
 app.listen(PORT, () => {
-    console.log(`⚡️[server]: Server is running at http://localhost:${PORT}`);
+    console.log(`[server]: Server is running at http://localhost:${PORT}`);
 });
