@@ -11,7 +11,13 @@ function criarCarteiraController(
   res: express.Response,
   next: express.NextFunction
 ) {
-  if (req.body == undefined || !req.body.dinheiro || !req.body.clienteId) {
+  console.log(req.body);
+
+  if (
+    req.body === undefined ||
+    req.body.dinheiro === undefined ||
+    !req.body.clienteId
+  ) {
     return res
       .status(400)
       .json({ message: 'Parametros de body obrigatorios não passados' });
