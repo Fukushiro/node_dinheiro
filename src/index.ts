@@ -12,7 +12,7 @@ import { envs } from '../config';
 config();
 const app = express();
 
-const PORT = 8000;
+const PORT = envs.PORT;
 app.use(
   express.urlencoded({
     limit: '50mb',
