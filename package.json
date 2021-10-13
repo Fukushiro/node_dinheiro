@@ -9,7 +9,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon src/index.ts",
-    "build": "tsc --project ./"
+    "build": "tsc --project ./",
+    "createProd": "npx sequelize-cli db:create --env productionString",
+    "migrateProd": "npx sequelize-cli db:migrate --env productionString"
   },
   "author": "",
   "license": "ISC",
