@@ -4,30 +4,16 @@ import { sequelize } from './models';
 const queryInterface = sequelize.getQueryInterface();
 
 async function testeUp() {
-  await queryInterface.createTable('User', {
-    id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      primaryKey: true,
-      autoIncrement: true,
+  await queryInterface.bulkInsert('User', [
+    {
+      username: 'usuario',
+      password: 'senha',
+      createdAt: new Date(),
+      updatedAt: new Date(),
     },
-    username: {
-      type: DataTypes.STRING,
-    },
-    password: {
-      type: DataTypes.STRING,
-    },
-    createdAt: {
-      type: DataTypes.DATE,
-      allowNull: false,
-    },
-    updatedAt: {
-      type: DataTypes.DATE,
-      allowNull: false,
-    },
-  });
+  ]);
 }
 
 async function testeDown() {
-  await queryInterface.dropTable('carteira');
+  await queryInterface.bulkDelete('User', null, {});
 }
