@@ -16,6 +16,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/lodash": "^4.14.175",
     "basic-auth": "^2.0.1",
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",

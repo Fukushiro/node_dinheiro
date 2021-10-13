@@ -9,7 +9,7 @@ if (!('error' in result)) {
   envs = result.parsed;
 } else {
   envs = {};
-  _.each(process.env, (value, key) => (envs[key] = value));
+  _.each(process.env, (value: any, key: any) => (envs[key] = value));
 }
 
 export { envs };
