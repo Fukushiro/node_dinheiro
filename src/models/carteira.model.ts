@@ -37,7 +37,6 @@ async function getCarteiraByCliente(clienteId: number) {
   const carteira = await CarteiraModel.findAll({
     where: { ClienteId: clienteId },
   });
-  console.log('carteiras->>>>>>>>>>>>>>', carteira);
 
   return carteira;
 }
