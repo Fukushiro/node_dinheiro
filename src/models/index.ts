@@ -16,7 +16,14 @@ const methodDev = {
 };
 
 const methodProd = process.env.DATABASE_URL || '';
-console.log(methodProd);
+console.log(methodProd, {
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false,
+    },
+  },
+});
 
 const sequelize = new Sequelize(String(process.env.DATABASE_URL));
 
