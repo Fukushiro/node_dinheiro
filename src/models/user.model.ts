@@ -2,6 +2,7 @@ import { DataTypes } from 'sequelize';
 
 import { Sequelize } from 'sequelize';
 import { sequelize } from '.';
+
 // const queryInterface = sequelize.getQueryInterface();
 interface UserInterface {
   username: string;
