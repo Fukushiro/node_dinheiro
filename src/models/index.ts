@@ -25,7 +25,14 @@ console.log(methodProd, {
   },
 });
 
-const sequelize = new Sequelize(String(process.env.DATABASE_URL));
+const sequelize = new Sequelize(String(process.env.DATABASE_URL), {
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false,
+    },
+  },
+});
 
 // const db: { Sequelize: any; sequelize: any } = {
 //   Sequelize: Sequelize,
