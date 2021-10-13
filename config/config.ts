@@ -1,6 +1,9 @@
-const config = require('dotenv');
-config.config();
-module.exports = {
+import { envs } from '../config';
+
+// const config = require('dotenv');
+// config.config();
+
+const out = {
   production: {
     dialect: 'postgres',
     username: 'postgres',
@@ -11,10 +14,11 @@ module.exports = {
   },
   productionString: {
     dialect: 'postgres',
-    url: process.env.DATABASE_URL,
+    url: envs.DATABASE_URL,
   },
   development: {
     dialect: 'sqlite',
     storage: 'db_development.sqlite3',
   },
 };
+module.exports = out;

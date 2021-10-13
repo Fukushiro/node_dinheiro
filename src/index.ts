@@ -7,6 +7,8 @@ import { verifyJWT } from './helpers/jwt-config';
 import { getToken } from './controllers/user.controller';
 import cors from 'cors';
 import UserRoute from './routes/user.routes';
+
+import { envs } from '../config';
 config();
 const app = express();
 
@@ -16,6 +18,8 @@ app.use(
     limit: '50mb',
   })
 );
+console.log('envs', envs.DATABASE_URL);
+
 // const c = cors();
 app.use(cors({ origin: '*' }));
 // app.options('*', c);
