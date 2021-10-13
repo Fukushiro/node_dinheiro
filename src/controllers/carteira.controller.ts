@@ -17,7 +17,11 @@ function criarCarteiraController(
       .json({ message: 'Parametros de body obrigatorios não passados' });
   }
 
-  createCarteira(req.body.dinheiro, req.body.clienteId);
+  createCarteira({
+    dinheiro: req.body.dinheiro,
+    clienteId: req.body.clienteId,
+    nome: req.body.nome,
+  });
 
   res.status(200).json({ message: 'Sucesso ao criar cliente' });
 }
@@ -57,7 +61,12 @@ async function removeCarteiraValue(
   res: express.Response,
   next: express.NextFunction
 ) {
-  if (req.body == undefined || !req.body.amount || !req.body.carteiraId) {
+  if (
+    req.body == undefined ||
+    !req.body.amount ||
+    !req.body.carteiraId ||
+    !req.body.nome
+  ) {
     return res
       .status(400)
       .json({ message: 'Parametros de body obrigatorios não passados' });

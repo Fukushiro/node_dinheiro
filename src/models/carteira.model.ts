@@ -6,20 +6,38 @@ const CarteiraModel = sequelize.define(
   'carteira',
   {
     dinheiro: { type: DataTypes.FLOAT, defaultValue: 0, allowNull: false },
+    nome: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: 'default',
+    },
   },
   { freezeTableName: true }
 );
 
 CarteiraModel.belongsTo(ClienteModel, { foreignKey: 'ClienteId' });
 
-async function createCarteira(dinheiro: number, clienteId: number) {
-  await CarteiraModel.create({ dinheiro: dinheiro, ClienteId: clienteId });
+async function createCarteira({
+  dinheiro,
+  clienteId,
+  nome,
+}: {
+  dinheiro: number;
+  clienteId: number;
+  nome?: string;
+}) {
+  await CarteiraModel.create({
+    dinheiro: dinheiro,
+    ClienteId: clienteId,
+    nome: nome,
+  });
 }
 
 async function getCarteiraByCliente(clienteId: number) {
   const carteira = await CarteiraModel.findAll({
     where: { ClienteId: clienteId },
   });
+  console.log('carteiras->>>>>>>>>>>>>>', carteira);
 
   return carteira;
 }

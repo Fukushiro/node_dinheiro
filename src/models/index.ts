@@ -16,7 +16,7 @@ const methodDev: { dialect: string; storage: string } = {
 };
 
 const methodProd = '';
-let sequelize: any;
+let sequelize: Sequelize;
 if (process.env.USAR_SQLITE == 'true') {
   sequelize = new Sequelize({
     dialect: 'sqlite',

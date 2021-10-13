@@ -13,7 +13,7 @@
     "build": "tsc --project ./",
     "createProd": "npx sequelize-cli db:create --env productionString",
     "migrateProd": "npx sequelize-cli db:migrate --env productionString",
-    "migrateHeroku": "npx sequelize-cli db:migrate --env heroku"
+    "migrateDev": "npx sequelize-cli db:migrate --env development"
   },
   "author": "",
   "license": "ISC",

@@ -23,7 +23,7 @@ async function criarClienteController(
     req.body.password
   );
 
-  createCarteira(0, cliente.id);
+  createCarteira({ clienteId: cliente.id, dinheiro: 0, nome: req.body.nome });
   res.status(200).json({ message: 'Sucesso ao criar cliente' });
 }
 
