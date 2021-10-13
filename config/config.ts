@@ -17,9 +17,11 @@ module.exports = {
     dialect: 'postgres',
     url: envs.DATABASE_URL,
     // native: true,
-    ssl: {
-      require: true,
-      rejectUnauthorized: false,
+    dialectOptions: {
+      ssl: {
+        require: true,
+        rejectUnauthorized: false,
+      },
     },
   },
   development: {
